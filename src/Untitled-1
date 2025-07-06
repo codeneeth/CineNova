@@ -1,0 +1,29 @@
+// === CineNova Dark Theme Colors & UI Tokens ===
+
+// 🖤 Base Backgrounds
+--bg-main:         #0d0d0d;   // App background
+--bg-surface:      #1a1a1a;   // Card / Sections
+--navbar-bg:       #0d0d0d;   // Navbar background (same as bg-main)
+--border:          #333333;   // Dividers / outlines
+
+// ❤️ Primary / Branding
+--primary:         #e50914;   // Logo / main highlight (Netflix Red)
+--logo-color:      #e50914;   // Brand logo color
+
+// ✨ Secondary / Accents
+--secondary:       #ffb400;   // Rating stars / warning accents
+--accent:          #00adb5;   // CTA buttons / links
+--accent-hover:    #007a81;   // On hover buttons / links
+
+// 🔤 Text
+--text-main:       #ffffff;   // Headings / important text
+--text-muted:      #b3b3b3;   // Descriptions / less emphasis
+
+// 🧱 Fonts
+--font-primary:    'Poppins', sans-serif;     // Clean modern
+--font-heading:    'Montserrat', sans-serif;  // Bold titles
+--font-logo:       'Bebas Neue', sans-serif;  // Logo-style font (uppercase & strong)
+
+// 🎨 Shadows & Effects (optional)
+--card-shadow:     0 4px 20px rgba(0,0,0,0.4);
+--button-hover-glow: 0 0 12px #00adb5;
