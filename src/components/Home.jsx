@@ -1,7 +1,60 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
+import Search from "./Search";
+import { useEffect, useState } from "react";
+import { ThreeDot } from "react-loading-indicators";
+import MovieCard from "./MovieCard";
+
+const API_BASE_URL = "https://api.themoviedb.org/3";
+
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_KEY}`,
+  },
+};
 
 const Home = () => {
+  const [searchTerm, setsearchTerm] = useState("");
+  const [errorMessage, seterrorMessage] = useState("");
+  const [movieList, setmovieList] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
+  const fetchMovies = async (query = "") => {
+    setisLoading(true);
+    seterrorMessage("");
+    try {
+      const endpoint =query 
+      ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}&sort_by=popularity.desc`
+      : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+      const response = await fetch(endpoint, API_OPTIONS);
+
+      if (!response.ok) {
+        throw new Error("Error fetching Movies");
+      }
+
+      const data = await response.json();
+
+      if (data.response == "False") {
+        seterrorMessage(data.error || "Failed to fetch Movies");
+        setmovieList([]);
+        return;
+      }
+      setmovieList(data.results || []);
+    } catch (error) {
+      console.log(`Error fetching movies please try again later${error}`);
+      seterrorMessage("Error fetching movies. please try again later");
+    } finally {
+      setisLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies(searchTerm);
+  }, [searchTerm]);
   return (
     <div className="max-w-6xl mx-auto">
       <div className="container min-h-screen flex flex-col justify-center">
@@ -19,30 +72,38 @@ const Home = () => {
             </span>
             You’ll Love <br /> Without the Hassle
           </p>
-
-          <div className="hidden sm:block relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-            <input
-              type="search"
-              placeholder="Search movies..."
-              className="w-full bg-transparent text-white border border-[#333333] px-4 pr-10 py-2 rounded-md placeholder-[#b3b3b3] focus:outline-none text-sm sm:text-base"
-            />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 text-[#ffffff] hover:text-[#646969] text-lg sm:text-xl transition-colors duration-300 cursor-pointer">
-              <CiSearch />
-            </button>
-          </div>
-
-          <div className="relative md:hidden ">
-            <input
-              type="search"
-              placeholder="Search movies..."
-              className="w-full bg-[#0d0d0d] text-white border border-[#333333] px-4 pr-10 py-2 rounded-md placeholder-[#b3b3b3] focus:outline-none text-sm"
-            />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 text-[#ffffff] hover:text-[#646969] text-lg">
-              <CiSearch />
-            </button>
+          <div className="flex flex-col justify-center items-center ">
+            <Search searchTerm={searchTerm} setsearchTerm={setsearchTerm} />
           </div>
         </div>
       </div>
+      <section className="my-10">
+        <h2 className="text-2xl text-white font-bold mb-6">All Movies</h2>
+
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <ThreeDot
+              variant="bounce"
+              color="#e50914"
+              size="medium"
+              text=""
+              textColor=""
+            />
+          </div>
+        ) : errorMessage ? (
+          <div className="flex justify-center items-center h-64">
+            <p className="text-red-500">{errorMessage}</p>
+          </div>
+        ) : (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {movieList.map((movie) => (
+              <li key={movie.id}>
+                <MovieCard movie={movie} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   );
 };

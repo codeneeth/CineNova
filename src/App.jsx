@@ -10,10 +10,10 @@ const App = () => {
       <main className=''>
         <Home />
       </main>
-      <div className='mt-[700px]'>
+      {/* <div className='mt-[700px]'>
                   <Footer />
 
-      </div>
+      </div> */}
     </div>
   )
 }
