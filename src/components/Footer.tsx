@@ -3,56 +3,57 @@ import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="w-full p-5 border-t border-[#333333]">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4">
+    <footer className="w-full bg-[#0e0e0e] border-t border-[#1f1f1f] backdrop-blur-md shadow-inner">
+      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-8 text-[#cfcfcf]">
+        
+        {/* Left: Brand */}
+        <div className="flex flex-col items-center md:items-start gap-2">
+          <h1 className="text-2xl font-bold tracking-wider text-white">CineNova</h1>
+          <p className="text-sm text-[#999] max-w-xs text-center md:text-left">
+            Discover, explore, and fall in love with movies  all in one place.
+          </p>
+        </div>
 
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="flex flex-row-reverse justify-center gap-[2px]">
-              <span className="h-3 w-[2px] bg-white"></span>
-              <span className="h-5 w-[2px] bg-gradient-to-b from-[#e50914] via-white to-[#00adb5]"></span>
-              <span className="h-7 w-[2px] bg-white"></span>
-            </div>
+        {/* Center: Social Icons */}
+        <div className="flex gap-6 text-xl">
+          <a
+            href="https://github.com/codeneeth"
+            aria-label="GitHub"
+            className="hover:text-[#e50914] transition-transform transform hover:-translate-y-1 duration-300"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://linkedin.com/in/praneeth-sai-kancheti"
+            aria-label="LinkedIn"
+            className="hover:text-[#00adb5] transition-transform transform hover:-translate-y-1 duration-300"
+          >
+            <FaLinkedinIn />
+          </a>
+          <a
+            href="https://instagram.com/Whilepraneeth"
+            aria-label="Instagram"
+            className="hover:text-pink-500 transition-transform transform hover:-translate-y-1 duration-300"
+          >
+            <FaInstagram />
+          </a>
+        </div>
 
-            <h1 className="text-2xl text-[#e50914] font-semibold tracking-wide">
-              CineNova
-            </h1>
-
-            <div className="flex flex-row-reverse justify-center gap-[2px]">
-              <span className="h-7 w-[2px] bg-white"></span>
-              <span className="h-5 w-[2px] bg-gradient-to-b from-[#e50914] via-white to-[#00adb5]"></span>
-              <span className="h-3 w-[2px] bg-white"></span>
-            </div>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex gap-5">
-            <button className="cursor-pointer text-xl hover:text-gray-300 transform hover:-translate-y-1 transition-all duration-300">
-              <FaGithub />
-            </button>
-            <button className="cursor-pointer text-xl hover:text-gray-300 transform hover:-translate-y-1 transition-all duration-300">
-              <FaLinkedinIn />
-            </button>
-            <button className="cursor-pointer text-xl hover:text-gray-300 transform hover:-translate-y-1 transition-all duration-300">
-              <FaInstagram />
-            </button>
-          </div>
-
-          {/* Copyright */}
-          <div className="text-center sm:text-right flex flex-col gap-1 text-sm">
-            <p className="font-light">© 2025 CineNova. All rights reserved.</p>
-            <p className="font-extralight">
-              Made with ❤️ by{" "}
-              <a href="#" className="text-[#e50914] hover:underline">
-                Praneeth
-              </a>
-            </p>
-          </div>
-
+        {/* Right: Credits */}
+        <div className="text-xs text-[#888] text-center md:text-right leading-5">
+          <p>© {new Date().getFullYear()} CineNova. All rights reserved.</p>
+          <p>
+            Made with ❤️ by{" "}
+            <a
+              href="#"
+              className="text-white hover:underline hover:text-[#e50914] transition-colors duration-200"
+            >
+              Praneeth
+            </a>
+          </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
