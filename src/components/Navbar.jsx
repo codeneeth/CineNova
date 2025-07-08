@@ -24,7 +24,7 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           <a
-            href="https://github.com/your-repo"
+            href="https://github.com/codeneeth"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 text-sm font-medium border border-[#333] rounded-md hover:bg-[#e50914] hover:border-[#e50914] transition-all duration-300"
@@ -33,21 +33,21 @@ const Navbar = () => {
           </a>
           <div className="flex gap-4 text-lg text-gray-300">
             <a
-              href="https://github.com/"
+              href="https://github.com/codeneeth"
               target="_blank"
               className="hover:text-white"
             >
               <FaGithub />
             </a>
             <a
-              href="https://linkedin.com/"
+              href="https://linkedin.com/praneeth-sai-kancheti"
               target="_blank"
               className="hover:text-[#00adb5]"
             >
               <FaLinkedinIn />
             </a>
             <a
-              href="https://instagram.com/"
+              href="https://instagram.comcodeneeth"
               target="_blank"
               className="hover:text-pink-500"
             >
